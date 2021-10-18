@@ -1,0 +1,46 @@
+<ion-content>
+  <form [formGroup]="productForm" autocomplete="off">
+    <div id="mainGrid">
+      <div class="thumbnail-container" (click)="presentActionSheet()">
+        <ion-img *ngIf="productForm.controls.imageUrl.value" [src]="productForm.controls.imageUrl.value"></ion-img>
+        <ion-icon *ngIf="!productForm.controls.imageUrl.value" name="image-outline"></ion-icon>
+      </div>
+      <ion-item>
+        <ion-label position="floating">Nome</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Descrizione</ion-label>
+        <ion-input type="text" formControlName="description"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Quantità</ion-label>
+        <ion-input type="number" formControlName="quantity"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Peso</ion-label>
+        <ion-input type="number" formControlName="weight"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Stagionatura</ion-label>
+        <ion-input type="text" formControlName="seasoning"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Prezzo</ion-label>
+        <ion-input type="number" formControlName="price"></ion-input>
+      </ion-item>
+    </div>
+  </form>
+  <div class="buttons-container">
+    <ion-button *ngIf="isNewProduct" expand="block" [disabled]="productForm.invalid" (click)="createProduct()">
+      aggiungi
+      <ion-icon *ngIf="isProductCreated === undefined || isProductUpdated" slot="start" name="add-circle-outline"></ion-icon>
+      <ion-spinner *ngIf="isProductCreated === false" slot="start" name="crescent"></ion-spinner>
+    </ion-button>
+    <ion-button *ngIf="!isNewProduct" expand="block" color="warning" [disabled]="productForm.pristine && productForm.untouched" (click)="updateProduct(productForm.get('id').value)">
+      aggiorna
+      <ion-icon *ngIf="isProductUpdated === undefined || isProductUpdated" slot="start" name="save-outline"></ion-icon>
+      <ion-spinner *ngIf="isProductUpdated === false" slot="start" name="crescent"></ion-spinner>
+    </ion-button>
+  </div>
+</ion-content>

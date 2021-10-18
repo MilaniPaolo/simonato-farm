@@ -1,0 +1,15 @@
+<ion-card>
+  <ion-icon class="delete-icon" name="trash-outline" (click)="deleteProduct.emit(product.id)"></ion-icon>
+  <div (click)="productSelected.emit(product.id)">
+    <div class="image-container">
+      <ion-img [src]="product.imageUrl"></ion-img>
+    </div>
+    <div class="card-footer">
+      <div>
+        <ion-card-title>{{ product.name }}</ion-card-title>
+        <ion-card-subtitle>x {{ product.quantity }}</ion-card-subtitle>
+      </div>
+      <div class="price">{{ product.price | currency : 'EUR' }}</div>
+    </div>
+  </div>
+</ion-card>

@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Simonato Farm Admin
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="cards-grid">
+    <app-product-card
+      *ngFor="let product of $products | async"
+      [product]="product"
+      (productSelected)="productSelected($event)"
+      (deleteProduct)="deleteProduct($event)">
+    </app-product-card>
+  </div>
+</ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="addProduct()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
